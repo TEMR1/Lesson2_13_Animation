@@ -1,3 +1,5 @@
+package Models;
+
 public class AnimPoint {
     private int x;
     private int y;

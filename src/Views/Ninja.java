@@ -1,3 +1,7 @@
+package Views;
+
+import Models.AnimPoint;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +65,10 @@ public class Ninja extends JPanel {
         try {
             image = ImageIO.read(new File("src/res/black-ninja-game-sprites_7814-467.png"));
             setSize(currentAnimation.getWidth(), currentAnimation.getHeight());
-            g.drawImage(image, currentAnimation.getX(), currentAnimation.getY(), null);
+            var x = currentAnimation.getX();
+            var y = currentAnimation.getY();
+            System.out.println(x + " "+ y);
+            g.drawImage(image, x, y, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,6 +108,13 @@ public class Ninja extends JPanel {
                 if  (pointsArray.size() == 0) {
                     return;
                 }
+
+                try {
+                    Thread.sleep(101);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
                 var points = pointsArray.get(0);
                 for (int i = 0; i < points.size(); i++) {
 
@@ -110,7 +124,7 @@ public class Ninja extends JPanel {
                     height = points.get(i).getHeight();
 
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(101);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

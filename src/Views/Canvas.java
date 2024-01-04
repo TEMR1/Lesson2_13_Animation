@@ -1,3 +1,5 @@
+package Views;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -5,8 +7,8 @@ public class Canvas extends JFrame implements KeyListener {
 
     private Ninja ninja = new Ninja();
 
-    Canvas(){
-        setSize(2500,2000);
+    public Canvas(){
+        setSize(500,500);
         setLayout(null);
         addKeyListener(this);
         setVisible(true);
