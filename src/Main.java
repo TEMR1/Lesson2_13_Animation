@@ -1,7 +1,7 @@
-import Views.Canvas;
+import Controllers.Controller;
 
 public class Main {
     public static void main(String[] args) {
-        new Canvas();
+        new Controller();
     }
 }
