@@ -13,7 +13,7 @@ public class Model1 extends BaseModel{
         points.add(new AnimPoint(-1173, -340, 200, 203));
 
         currentAnimation.addPoints(points);
-        currentAnimation.runAnim();
+        new Thread(currentAnimation.runnable).start();
     }
     @Override
     public void doAnim() {

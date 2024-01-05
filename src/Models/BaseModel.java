@@ -38,24 +38,27 @@ public abstract class BaseModel extends JPanel{
             pointsArray.add(points);
         }
 
-        public void runAnim(){
-            if  (pointsArray.isEmpty()) {
-                return;
-            }
-
-            ArrayList<AnimPoint> points = pointsArray.getFirst();
-            for (AnimPoint point : points) {
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (pointsArray.isEmpty()) {
+                    return;
                 }
 
-                repaintNinja(point);
+                ArrayList<AnimPoint> points = pointsArray.getFirst();
+                for (AnimPoint point : points) {
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    repaintNinja(point);
+                }
+                pointsArray.removeFirst();
             }
-            pointsArray.removeFirst();
-        }
+        };
     }
 
     public abstract void doAnim();

@@ -8,7 +8,7 @@ public class Model3 extends BaseModel{
         points.add(new AnimPoint(-95, -70, 141, 227));
 
         currentAnimation.addPoints(points);
-        currentAnimation.runAnim();
+        new Thread(currentAnimation.runnable).start();
     }
     @Override
     public void doAnim() {
