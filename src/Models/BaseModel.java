@@ -1,7 +1,5 @@
 package Models;
 
-import Controllers.Controller;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +39,7 @@ public abstract class BaseModel extends JPanel{
 
     }
 
-    class BaseAnimation{
+    public class BaseAnimation{
         private final ArrayList<ArrayList<AnimPoint>> pointsArray = new ArrayList<>();
 
         public void addPoints(ArrayList<AnimPoint> points) {

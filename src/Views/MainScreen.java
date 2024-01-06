@@ -1,6 +1,7 @@
 package Views;
 
 import Controllers.Controller;
+import Models.AnimPoint;
 import Models.Ninja;
 
 import javax.swing.*;
