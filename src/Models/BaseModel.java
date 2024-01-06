@@ -1,5 +1,7 @@
 package Models;
 
+import Controllers.Controller;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,9 +18,9 @@ public abstract class BaseModel extends JPanel{
         BufferedImage image;
         try {
             image = ImageIO.read(new File("src/res/black-ninja-game-sprites_7814-467.png"));
-            setSize(currentPoint.getWidth(), currentPoint.getHeight());
-            int x = currentPoint.getX();
-            int y = currentPoint.getY();
+            setSize(currentPoint.width(), currentPoint.height());
+            int x = currentPoint.x();
+            int y = currentPoint.y();
             System.out.println(x + " " + y);
             g.drawImage(image, x, y, null);
         } catch (IOException e) {
@@ -28,36 +30,36 @@ public abstract class BaseModel extends JPanel{
 
     public void repaintNinja(AnimPoint point){
         currentPoint = point;
-        repaint();
+        getParent().repaint();
     }
 
-    class BaseAnimation extends Thread{
+    class BaseAnimation{
         private final ArrayList<ArrayList<AnimPoint>> pointsArray = new ArrayList<>();
 
         public void addPoints(ArrayList<AnimPoint> points) {
             pointsArray.add(points);
         }
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                if (pointsArray.isEmpty()) {
-                    return;
-                }
-
-                ArrayList<AnimPoint> points = pointsArray.getFirst();
-                for (AnimPoint point : points) {
-
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    repaintNinja(point);
-                }
-                pointsArray.removeFirst();
+        Runnable runnable = () -> {
+            if (pointsArray.isEmpty()) {
+                return;
             }
+
+            ArrayList<AnimPoint> points = pointsArray.getFirst();
+            for (AnimPoint point : points) {
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.out.println(point.x() + " " + point.y());
+                repaintNinja(point);
+            }
+            System.out.println("Кінець функції");
+            pointsArray.removeFirst();
+
         };
     }
 
