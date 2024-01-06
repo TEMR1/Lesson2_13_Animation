@@ -13,7 +13,7 @@ public class Controller implements KeyListener{
     public Controller(){
         screen = new MainScreen(this);
         model = new Model3();
-        runAnim(model);
+        newAnim(model);
     }
 
     @Override
@@ -34,16 +34,16 @@ public class Controller implements KeyListener{
                 model = new Model3();
                 break;
         }
-        runAnim(model);
+        newAnim(model);
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
         model = new Model3();
-        runAnim(model);
+        newAnim(model);
     }
 
-    private void runAnim(BaseModel model){
+    private void newAnim(BaseModel model){
         var points = model.getPoints();
         screen.mainPanel.currentAnimation.addPoints(points);
         new Thread(screen.mainPanel.currentAnimation.runnable).start();
