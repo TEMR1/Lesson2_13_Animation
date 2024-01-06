@@ -30,7 +30,7 @@ public abstract class BaseModel extends JPanel{
 
     public void repaintNinja(AnimPoint point){
         currentPoint = point;
-        getParent().repaint();
+        repaint();
     }
 
     class BaseAnimation{
@@ -48,14 +48,15 @@ public abstract class BaseModel extends JPanel{
             ArrayList<AnimPoint> points = pointsArray.getFirst();
             for (AnimPoint point : points) {
 
+                repaintNinja(point);
+
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
 
                 System.out.println(point.x() + " " + point.y());
-                repaintNinja(point);
             }
             System.out.println("Кінець функції");
             pointsArray.removeFirst();

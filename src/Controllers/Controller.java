@@ -45,7 +45,7 @@ public class Controller implements KeyListener{
     }
 
     public void standAnim(){
-        model = new Model3();
+        model = new Model1();
         model.doAnim();
     }
 }
