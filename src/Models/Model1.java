@@ -1,8 +1,14 @@
 package Models;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Model1 extends BaseModel{
+
+    public Model1(JFrame frame) {
+        super(frame);
+    }
+
     public void runAnim() {
         ArrayList<AnimPoint> points = new ArrayList<>();
         points.add(new AnimPoint(-99, -340, 200, 203));

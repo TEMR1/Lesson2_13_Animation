@@ -4,6 +4,7 @@ import Controllers.Controller;
 import Models.Ninja;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainScreen extends JFrame{
     private final Controller controller;
@@ -19,6 +20,13 @@ public class MainScreen extends JFrame{
 
         ninja.setBounds(0,0, ninja.getWidthOfStandingNinja(), ninja.getHeightOfStandingNinja());
         add(ninja);
-        controller.standAnim();
+
+    }
+
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+//        controller.isReady();
     }
 }

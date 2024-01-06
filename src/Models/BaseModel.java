@@ -11,6 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class BaseModel extends JPanel{
+    private final Ninja ninja = new Ninja();
+
+    public BaseModel(JFrame frame){
+        setBounds(0,0,400,400);
+        frame.add(this);
+    }
+
     protected BaseAnimation currentAnimation = new BaseAnimation();
     private AnimPoint currentPoint;
     @Override
@@ -30,7 +37,8 @@ public abstract class BaseModel extends JPanel{
 
     public void repaintNinja(AnimPoint point){
         currentPoint = point;
-        repaint();
+//        screen.setPoints(point)
+
     }
 
     class BaseAnimation{

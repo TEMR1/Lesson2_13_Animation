@@ -11,9 +11,11 @@ import java.awt.event.KeyListener;
 
 public class Controller implements KeyListener{
     private BaseModel model;
+    public MainScreen screen;
 
     public Controller(){
-        new MainScreen(this);
+       screen =  new MainScreen(this);
+
     }
     @Override
     public void keyTyped(KeyEvent keyEvent) {
@@ -24,15 +26,15 @@ public class Controller implements KeyListener{
     public void keyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_RIGHT:
-                model = new Model1();
+                model = new Model1(screen);
                 model.doAnim();
                 break;
             case KeyEvent.VK_SPACE:
-                model = new Model2();
+                model = new Model2(screen);
                 model.doAnim();
                 break;
             default:
-                model = new Model3();
+                model = new Model3(screen);
                 model.doAnim();
                 break;
         }
@@ -45,7 +47,7 @@ public class Controller implements KeyListener{
     }
 
     public void standAnim(){
-        model = new Model1();
+        model = new Model1(screen);
         model.doAnim();
     }
 }
