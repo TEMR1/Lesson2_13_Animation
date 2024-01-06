@@ -1,33 +1,22 @@
 package Views;
 
 import Controllers.Controller;
-import Models.AnimPoint;
-import Models.Ninja;
+import Models.BaseModel;
+import Models.Model3;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainScreen extends JFrame{
-    private final Controller controller;
-    private final Ninja ninja = new Ninja();
+    private BaseModel model = new Model3();
+    public final MainPanel mainPanel = new MainPanel();
 
     public MainScreen(Controller controller){
-        this.controller =  controller;
-
         setSize(500,500);
         setLayout(null);
         addKeyListener(controller);
         setVisible(true);
 
-        ninja.setBounds(0,0, ninja.getWidthOfStandingNinja(), ninja.getHeightOfStandingNinja());
-        add(ninja);
-
-    }
-
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-//        controller.isReady();
+        mainPanel.setBounds(0,0, model.getWidthOfStandingNinja(), model.getHeightOfStandingNinja());
+        add(mainPanel);
     }
 }

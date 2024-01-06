@@ -1,9 +1,6 @@
 package Controllers;
 
-import Models.BaseModel;
-import Models.Model1;
-import Models.Model2;
-import Models.Model3;
+import Models.*;
 import Views.MainScreen;
 
 import java.awt.event.KeyEvent;
@@ -14,9 +11,11 @@ public class Controller implements KeyListener{
     public MainScreen screen;
 
     public Controller(){
-       screen =  new MainScreen(this);
-
+        screen = new MainScreen(this);
+        model = new Model3();
+        runAnim(model);
     }
+
     @Override
     public void keyTyped(KeyEvent keyEvent) {
 
@@ -26,28 +25,27 @@ public class Controller implements KeyListener{
     public void keyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()){
             case KeyEvent.VK_RIGHT:
-                model = new Model1(screen);
-                model.doAnim();
+                model = new Model1();
                 break;
             case KeyEvent.VK_SPACE:
-                model = new Model2(screen);
-                model.doAnim();
+                model = new Model2();
                 break;
             default:
-                model = new Model3(screen);
-                model.doAnim();
+                model = new Model3();
                 break;
         }
-        model.repaint();
+        runAnim(model);
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        standAnim();
+        model = new Model3();
+        runAnim(model);
     }
 
-    public void standAnim(){
-        model = new Model1(screen);
-        model.doAnim();
+    private void runAnim(BaseModel model){
+        var points = model.getPoints();
+        screen.mainPanel.currentAnimation.addPoints(points);
+        new Thread(screen.mainPanel.currentAnimation.runnable).start();
     }
 }

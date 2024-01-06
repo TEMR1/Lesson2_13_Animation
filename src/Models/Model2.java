@@ -1,14 +1,11 @@
 package Models;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Model2 extends BaseModel{
-    public Model2(JFrame frame) {
-        super(frame);
-    }
 
-    public void jumpAnim() {
+    @Override
+    public ArrayList<AnimPoint> getPoints() {
         ArrayList<AnimPoint> points = new ArrayList<>();
         points.add(new AnimPoint(-89, -560, 147, 333));
         points.add(new AnimPoint(-243, -560, 181, 333));
@@ -20,11 +17,6 @@ public class Model2 extends BaseModel{
         points.add(new AnimPoint(-1387, -560, 171, 333));
         points.add(new AnimPoint(-1555, -560, 163, 333));
 
-        currentAnimation.addPoints(points);
-        new Thread(currentAnimation.runnable).start();
-    }
-    @Override
-    public void doAnim() {
-        jumpAnim();
+        return points;
     }
 }
